@@ -1,6 +1,6 @@
 
 * {
-  border: 1px solid green;
+  /*border: 1px solid green;*/
 }
 
 .title {
@@ -12,26 +12,47 @@
 }
 
 .container {
-  margin: 0 auto;
-  width: 400px;
+  margin: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+  height: 500px;
 }
 
 .t-left, .t-right, .b-left, .b-right {
-  width: 100px;
+  font-size: 1em;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 10px;
+  border: #000 solid 3px;
+  padding: 10px;
+  width: 200px;
+  height: 200px;
+  line-height: 200px;
+  float: left;
 }
 
 .t-left {
-  background-color: #6666FF;
+  /*yellow*/
+  background-color: #CDAD00;
+  /*background-color: #FFD700;*/
 }
 
 .t-right {
-  background-color: #CC6699;
+  /*red*/
+  background-color: #CD2626;
+  /*background-color: #FF3030;*/
 }
 
 .b-left {
-  background-color: #CCFF33;
+  /*green*/
+  background-color: #9BCD9B;
+  /*background-color: #C1FFC1;*/
 }
 
 .b-right {
-  background-color: #00FFCC;
+  /*blue*/
+  background-color: #1874CD;
+  /*background-color: #1E90FF;*/
 }
