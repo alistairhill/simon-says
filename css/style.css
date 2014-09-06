@@ -1,6 +1,6 @@
 
 * {
-  /*border: 1px solid green;*/
+  border: 1px solid green;
 }
 
 .title {
@@ -8,15 +8,31 @@
   font-size: 2.5em;
   font-weight: bold;
   text-align: center;
-  margin: 20px 0 50px 0;
+  margin: 20px 0 40px 0;
+}
+
+.controls {
+  text-align: center;
+}
+
+.start {
+  background-color: #9AC0CD;
+  font-size: 1.2em;
+  padding: 5px;
+  border-radius: 5px;
+  width: 4em;
+}
+
+.start:hover {
+  background-color: #BFEFFF;
 }
 
 .container {
-  margin: 40px;
+  margin: 30px;
   margin-left: auto;
   margin-right: auto;
-  width: 500px;
-  height: 500px;
+  width: 420px;
+  height: 420px;
 }
 
 .t-left, .t-right, .b-left, .b-right {
@@ -24,35 +40,49 @@
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  margin: 10px;
-  border: #000 solid 3px;
-  padding: 10px;
-  width: 200px;
-  height: 200px;
-  line-height: 200px;
+  margin: 3px;
+  border: #616161 solid 2px;
+  width: 175px;
+  height: 175px;
+  line-height: 175px;
   float: left;
+  border-radius: 5px;
+}
+
+.t-left:hover, .t-right:hover, .b-left:hover, .b-right:hover {
+  border: #3B3B3B 2px solid;
 }
 
 .t-left {
   /*yellow*/
+  border-top-left-radius: 175px;
   background-color: #CDAD00;
   /*background-color: #FFD700;*/
 }
 
 .t-right {
   /*red*/
+  border-top-right-radius: 175px;
   background-color: #CD2626;
   /*background-color: #FF3030;*/
 }
 
 .b-left {
   /*green*/
+  border-bottom-left-radius: 175px;
   background-color: #9BCD9B;
   /*background-color: #C1FFC1;*/
 }
 
 .b-right {
   /*blue*/
+  border-bottom-right-radius: 175px;
   background-color: #1874CD;
   /*background-color: #1E90FF;*/
+}
+
+footer {
+  text-align: center;
+  font-size: 12px;
+  margin: 30px;
 }
