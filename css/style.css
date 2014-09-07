@@ -1,6 +1,6 @@
 
 * {
-  border: 1px solid green;
+  /*border: 1px solid green;*/
 }
 
 .title {
@@ -13,19 +13,22 @@
 
 .controls {
   text-align: center;
+  font-size: 1.1em;
 }
 
-.start {
-  background-color: #9AC0CD;
-  font-size: 1.2em;
+.controls .round {
+  padding-left: 10px;
+}
+
+.start-button {
+  background-color: #436EEE;
   padding: 5px;
   border-radius: 5px;
   width: 4em;
+  color: #FFF;
 }
-
-.start:hover {
-  background-color: #BFEFFF;
-}
+.start-button:hover { background-color: #4876FF; }
+.start-button:active { background-color: #4169E1; }
 
 .container {
   margin: 30px;
