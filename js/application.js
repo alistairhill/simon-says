@@ -32,7 +32,7 @@ $(document).ready(function() {
     tileSet: [getDOMStuff.tile1, getDOMStuff.tile2, getDOMStuff.tile3, getDOMStuff.tile4]
   }
 
-  var getNewTile = {
+  var getNewRandomTile = {
     rand: function(){return Math.floor(Math.random()*4)+0},
     num: function(){return tileArray.tileSet[this.rand()]}
   }
@@ -42,7 +42,17 @@ $(document).ready(function() {
   }
 
   var tileSequence = {
-    array: []
+    array: [getDOMStuff.tile1, getDOMStuff.tile2, getDOMStuff.tile3, getDOMStuff.tile4]
+  }
+
+  var changeColor = {
+    lighten: function(tile, origColor, lightColor){
+      $(tile).css("background-color", lightColor)
+      this.darken(tile, origColor)
+    },
+    darken: function(tile, origColor) {
+      setTimeout(function(){$(tile).css("background-color", origColor)}, 400)
+    }
   }
 
   var playTiles = {
@@ -50,32 +60,31 @@ $(document).ready(function() {
       for (var i = 0; i < arr.length; i++) {
         if (arr[arr.length-1] == getDOMStuff.tile1) {
           console.log("tile1")
+          changeColor.lighten(getDOMStuff.tile1, "#EEE685", "#FFF68F")
           sound.tile1.play();
         } else if (arr[arr.length-1] == getDOMStuff.tile2) {
           console.log("tile2")
+          changeColor.lighten(getDOMStuff.tile2, "#CD2626", "#FF3030")
           sound.tile2.play();
         } else if (arr[arr.length-1] == getDOMStuff.tile3) {
           console.log("tile3")
+          changeColor.lighten(getDOMStuff.tile3, "#9ACD32", "#B3EE3A")
           sound.tile3.play();
         } else if (arr[arr.length-1] == getDOMStuff.tile4) {
           console.log("tile4")
+          changeColor.lighten(getDOMStuff.tile4, "#1874CD", "#1E90FF")
           sound.tile4.play();
         }
-
-        $(arr[i]).css("background-color", "yellow")
       }
     }
   }
 
   var startGame = {
     clickStart: getDOMStuff.startButton.click(function(){
-      tileSequence.array.push(getNewTile.num())
-      // console.log(tileSequence.array)
-      // updateRound.first()
+      tileSequence.array.push(getNewRandomTile.num())
+
+      updateRound.first()
       playTiles.go(tileSequence.array)
     })
   }
-
-
-
 })

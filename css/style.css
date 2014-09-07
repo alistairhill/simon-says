@@ -59,8 +59,8 @@
 .t-left {
   /*yellow*/
   border-top-left-radius: 175px;
-  background-color: #CDAD00;
-  /*background-color: #FFD700;*/
+  background-color: #EEE685;
+  /*background-color: #FFF68F;*/
 }
 
 .t-right {
@@ -73,8 +73,8 @@
 .b-left {
   /*green*/
   border-bottom-left-radius: 175px;
-  background-color: #9BCD9B;
-  /*background-color: #C1FFC1;*/
+  background-color: #9ACD32;
+  /*background-color: #B3EE3A;*/
 }
 
 .b-right {
