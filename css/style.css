@@ -50,6 +50,7 @@
   line-height: 175px;
   float: left;
   border-radius: 5px;
+  color: #EFF;
 }
 
 .t-left:hover, .t-right:hover, .b-left:hover, .b-right:hover {
