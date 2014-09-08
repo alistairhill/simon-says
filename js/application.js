@@ -61,26 +61,33 @@ $(document).ready(function() {
 
   var playTiles = {
     go: function(arr) {
-      for (var i = 0; i < arr.length; i++) {
-        console.log(arr[i])
-        if (arr[i] == getDOMStuff.tile1) {
-          console.log("tile1 lighten")
-          changeColor.lighten(getDOMStuff.tile1, "#EEE685", "#FFF68F")
-          sound.tile1.play()
-        } else if (arr[i] == getDOMStuff.tile2) {
+      var currentTile = -1
+      function advanceTiles(){
+        ++currentTile
+        if (arr[currentTile] == getDOMStuff.tile1) {
+            console.log("tile1 lighten")
+            changeColor.lighten(getDOMStuff.tile1, "#EEE685", "#FFF68F")
+            sound.tile1.play()
+        } else if (arr[currentTile] == getDOMStuff.tile2) {
           console.log("tile2 lighten")
           changeColor.lighten(getDOMStuff.tile2, "#CD2626", "#FF3030")
           sound.tile2.play();
-        } else if (arr[i] == getDOMStuff.tile3) {
+        } else if (arr[currentTile] == getDOMStuff.tile3) {
           console.log("tile3 lighten")
           changeColor.lighten(getDOMStuff.tile3, "#9ACD32", "#B3EE3A")
           sound.tile3.play();
-        } else if (arr[i] == getDOMStuff.tile4) {
+        } else if (arr[currentTile] == getDOMStuff.tile4) {
           console.log("tile4 lighten")
           changeColor.lighten(getDOMStuff.tile4, "#1874CD", "#1E90FF")
           sound.tile4.play();
         }
+        if (currentTile >= arr.length-1) {
+          clearInterval(tileInterval)
+          currentTile = -1
+        }
       }
+      var tileInterval = setInterval(advanceTiles, 500)
+
     }
   }
 
@@ -88,6 +95,7 @@ $(document).ready(function() {
     clickStart: getDOMStuff.startButton.click(function(){
       // tileSequence.array.push(getNewRandomTile.num())
       updateRound.first()
+
 
       playTiles.go(tileSequence.array)
     })
