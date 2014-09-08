@@ -55,23 +55,28 @@ $(document).ready(function() {
     }
   }
 
+  var delayStuff = {
+    // by: setTimeout(function(){playTiles.go(tileSequence.array)}, 400)
+  }
+
   var playTiles = {
     go: function(arr) {
       for (var i = 0; i < arr.length; i++) {
-        if (arr[arr.length-1] == getDOMStuff.tile1) {
-          console.log("tile1")
+        console.log(arr[i])
+        if (arr[i] == getDOMStuff.tile1) {
+          console.log("tile1 lighten")
           changeColor.lighten(getDOMStuff.tile1, "#EEE685", "#FFF68F")
-          sound.tile1.play();
-        } else if (arr[arr.length-1] == getDOMStuff.tile2) {
-          console.log("tile2")
+          sound.tile1.play()
+        } else if (arr[i] == getDOMStuff.tile2) {
+          console.log("tile2 lighten")
           changeColor.lighten(getDOMStuff.tile2, "#CD2626", "#FF3030")
           sound.tile2.play();
-        } else if (arr[arr.length-1] == getDOMStuff.tile3) {
-          console.log("tile3")
+        } else if (arr[i] == getDOMStuff.tile3) {
+          console.log("tile3 lighten")
           changeColor.lighten(getDOMStuff.tile3, "#9ACD32", "#B3EE3A")
           sound.tile3.play();
-        } else if (arr[arr.length-1] == getDOMStuff.tile4) {
-          console.log("tile4")
+        } else if (arr[i] == getDOMStuff.tile4) {
+          console.log("tile4 lighten")
           changeColor.lighten(getDOMStuff.tile4, "#1874CD", "#1E90FF")
           sound.tile4.play();
         }
@@ -81,9 +86,9 @@ $(document).ready(function() {
 
   var startGame = {
     clickStart: getDOMStuff.startButton.click(function(){
-      tileSequence.array.push(getNewRandomTile.num())
-
+      // tileSequence.array.push(getNewRandomTile.num())
       updateRound.first()
+
       playTiles.go(tileSequence.array)
     })
   }
