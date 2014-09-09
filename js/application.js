@@ -131,14 +131,15 @@ $(document).ready(function() {
           currTile = 0
           nextRound.go(num)
         } else if (usrArr[currTile] == tileSequence.array[currTile]) {
+          console.log(usrArr[currTile] + " " + tileSequence.array[currTile])
           currTile++
         } else {
+          console.log("Whoops!")
           usrArr = []
           currTile = 0
           gameOver.rst()
         }
       }
-
       $(t1).click(function(){
         playTile.change(t1, "#EEE685", "#FFF68F", "tile1")
         usrArr.push(t1)
@@ -164,18 +165,20 @@ $(document).ready(function() {
 
   var nextRound = {
     go: function(num) {
-      num ++
-      console.log("----------- next round: " + num +" -----------")
-      updateRoundText.subseq(num)
-      tileSequence.array.push(getNewRandomTile.num())
-      playTiles.go(tileSequence.array)
-      userSel.tile(num)
+      setTimeout(function(){
+        num ++
+        // console.log("-------- next round: " + num +" --------")
+        updateRoundText.subseq(num)
+        tileSequence.array.push(getNewRandomTile.num())
+        playTiles.go(tileSequence.array)
+        userSel.tile(num)
+      }, 1000)
     }
   }
 
   var startGame = {
     clickStart: domObj.startButton.click(function(){
-      // var num = 0
+      gameOver.rst()
       nextRound.go(0)
     })
   }
