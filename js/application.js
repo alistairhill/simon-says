@@ -38,8 +38,12 @@ $(document).ready(function() {
   }
 
   var updateRoundText = {
-    zero: function() {domObj.roundNum.text("0")},
-    subseq: function(){domObj.roundNum.text(parseInt(+1).toString())}
+    zero: function() {
+      domObj.roundNum.text("0")
+    },
+    subseq: function(num){
+      domObj.roundNum.text(parseInt(num).toString())
+    }
   }
 
   var tileSequence = {
@@ -61,6 +65,8 @@ $(document).ready(function() {
   var playTiles = {
     go: function(arr) {
       var currTile = 0
+      chgMouse.toggleType("auto")
+      chgMouse.unplayable()
       function advanceTiles(){
         if (arr[currTile] == domObj.tile1) {
           console.log("tile1 lighten")
@@ -86,7 +92,7 @@ $(document).ready(function() {
   }
 
   var chgMouse = {
-    toggle: function(type){
+    toggleType: function(type){
       var arrLen = tiles.array.length-1
       for (var i = 0; i <= arrLen; i++) {
         $(tiles.array[i]).css("cursor", type)
@@ -102,32 +108,37 @@ $(document).ready(function() {
 
   var gameOver = {
     rst: function() {
-      usrArr = []
       tileSequence.array = []
       updateRoundText.zero()
-      chgMouse.toggle("auto")
+      chgMouse.toggleType("auto")
       chgMouse.unplayable()
       console.log("Game Over!")
     }
   }
 
   var userSel = {
-    tile: function(){
+    tile: function(num){
       var usrArr = []
       var currTile = 0
       var t1 = domObj.tile1
       var t2 = domObj.tile2
       var t3 = domObj.tile3
       var t4 = domObj.tile4
-      chgMouse.toggle("pointer")
+      chgMouse.toggleType("pointer")
+
       function match() {
-        if (usrArr[currTile] == tileSequence.array[currTile]) {
+        if (currTile == tileSequence.array.length-1) {
+          currTile = 0
+          nextRound.go(num)
+        } else if (usrArr[currTile] == tileSequence.array[currTile]) {
           currTile++
-          nextRound.go()
         } else {
+          usrArr = []
+          currTile = 0
           gameOver.rst()
         }
       }
+
       $(t1).click(function(){
         playTile.change(t1, "#EEE685", "#FFF68F", "tile1")
         usrArr.push(t1)
@@ -152,21 +163,20 @@ $(document).ready(function() {
   }
 
   var nextRound = {
-    go: function() {
+    go: function(num) {
+      num ++
+      console.log("----------- next round: " + num +" -----------")
+      updateRoundText.subseq(num)
       tileSequence.array.push(getNewRandomTile.num())
       playTiles.go(tileSequence.array)
-      updateRoundText.subseq()
-      userSel.tile()
-      console.log("got in here")
+      userSel.tile(num)
     }
   }
 
   var startGame = {
     clickStart: domObj.startButton.click(function(){
-      tileSequence.array.push(getNewRandomTile.num())
-      updateRoundText.subseq()
-      playTiles.go(tileSequence.array)
-      userSel.tile()
+      // var num = 0
+      nextRound.go(0)
     })
   }
 })

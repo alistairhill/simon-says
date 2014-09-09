@@ -44,7 +44,7 @@
   margin-left: auto;
   margin-right: auto;
   margin: 3px;
-  border: #616161 solid 2px;
+  border: #AAA solid 1px;
   width: 175px;
   height: 175px;
   line-height: 175px;
@@ -54,7 +54,7 @@
 }
 
 .t-left:hover, .t-right:hover, .b-left:hover, .b-right:hover {
-  border: #3B3B3B 2px solid;
+  border: #666 1px solid;
 }
 
 .t-left {
