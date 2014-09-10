@@ -13,6 +13,7 @@
 $(document).ready(function() {
 
   var domObj = {
+    container: $(".container"),
     startButton: $(".start-button"),
     roundNum: $(".round-num"),
     tile1: $(".t-left"),
@@ -53,7 +54,7 @@ $(document).ready(function() {
     },
     butToggle: function(){
       var strtBtn = domObj.startButton[0]
-      strtBtn.value=="Start" ? strtBtn.value="Restart" : strtBtn.value="Start"
+      if (strtBtn.value="Restart") {strtBtn.value=="Start"}
     }
   }
 
@@ -84,24 +85,27 @@ $(document).ready(function() {
       var currTile = 0
       chgMouse.toggleType("auto")
       chgMouse.unplayable()
+      $(domObj.container).css("pointer-events", "none")
       function advanceTiles(){
         if (arr[currTile] == domObj.tile1) {
-          console.log("tile1 lighten")
+          // console.log("tile1 lighten")
           playTile.change(domObj.tile1, "#EEE685", "#FFF68F", "tile1")
         } else if (arr[currTile] == domObj.tile2) {
-          console.log("tile2 lighten")
+          // console.log("tile2 lighten")
           playTile.change(domObj.tile2, "#CD2626", "#FF3030", "tile2")
         } else if (arr[currTile] == domObj.tile3) {
-          console.log("tile3 lighten")
+          // console.log("tile3 lighten")
           playTile.change(domObj.tile3, "#9ACD32", "#B3EE3A", "tile3")
         } else if (arr[currTile] == domObj.tile4) {
-          console.log("tile4 lighten")
+          // console.log("tile4 lighten")
           playTile.change(domObj.tile4, "#1874CD", "#1E90FF", "tile4")
         }
         currTile++
         if (currTile >= arr.length) {
           clearInterval(tileInterval)
           currTile = 0
+          chgMouse.toggleType("pointer")
+          $(domObj.container).css("pointer-events", "all")
         }
       }
       var tileInterval = setInterval(advanceTiles, 500)
@@ -125,6 +129,7 @@ $(document).ready(function() {
 
   var gameOver = {
     rst: function() {
+      $(domObj.container).css("pointer-events", "none")
       tileSequence.array = []
       updateText.roundZero()
       chgMouse.toggleType("auto")
@@ -142,18 +147,17 @@ $(document).ready(function() {
       var t2 = domObj.tile2
       var t3 = domObj.tile3
       var t4 = domObj.tile4
-      chgMouse.toggleType("pointer")
+      chgMouse.toggleType("auto")
 
       function match() {
-        if (currTile == tileSequence.array.length-1) {
+        if (currTile >= tileSequence.array.length-1) {
           currTile = 0
           nextRound.go(num)
+
         } else if (usrArr[currTile] == tileSequence.array[currTile]) {
-          // console.log(usrArr[currTile] + " " + tileSequence.array[currTile])
+          console.log(usrArr[currTile])
           currTile++
-        } else {
-          console.log("Whoops!")
-          usrArr = []
+        } else if (usrArr[currTile][0] != tileSequence.array[currTile][0]) {
           currTile = 0
           gameOver.rst()
         }
@@ -185,7 +189,6 @@ $(document).ready(function() {
     go: function(num) {
       setTimeout(function(){
         num ++
-        // console.log("-------- next round: " + num +" --------")
         updateText.rounds(num)
         tileSequence.array.push(getNewRandomTile.num())
         playTiles.go(tileSequence.array)
@@ -195,7 +198,7 @@ $(document).ready(function() {
   }
 
   var startGame = {
-    clickStart: domObj.startButton.click(function(){
+    clickStart: domObj.startButton.click(function(event){
       gameOver.rst()
       nextRound.go(0)
     })
