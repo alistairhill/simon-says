@@ -11,11 +11,10 @@
 */
 
 $(document).ready(function() {
-
   var domObj = {
     container: $(".container"),
     startButton: $(".start-button"),
-    roundNum: $(".round-num"),
+    roundNum: $(".display"),
     tile1: $(".t-left"),
     tile2: $(".t-right"),
     tile3: $(".b-left"),
@@ -46,8 +45,8 @@ $(document).ready(function() {
       domObj.roundNum.text(parseInt(num).toString())
     },
     butToggle: function(){
-      var strtBtn = domObj.startButton[0]
-      if (strtBtn.value="Restart") {strtBtn.value=="Start"}
+      // var strtBtn = domObj.startButton[0]
+      // if (strtBtn.value="Start") {strtBtn.value=="Start"}
     }
   }
 
@@ -119,11 +118,11 @@ $(document).ready(function() {
   var gameOver = {
     rst: function() {
       $(domObj.container).css("pointer-events", "none")
+      $(domObj.startButton).css("pointer-events", "all")
       tileSequence.array = []
       updateText.roundZero()
       chgMouse.toggleType("auto")
       chgMouse.unplayable()
-      updateText.butToggle()
       console.log("Game Over!")
     }
   }
