@@ -29,7 +29,14 @@ $(document).ready(function() {
     tile1: new Audio('sounds/tile1.mp3'),
     tile2: new Audio('sounds/tile2.mp3'),
     tile3: new Audio('sounds/tile3.mp3'),
-    tile4: new Audio('sounds/tile4.mp3')
+    tile4: new Audio('sounds/tile4.mp3'),
+    tile1a: this.tile1,
+    tile2a: this.tile1,
+    tile3a: this.tile1,
+    tile4a: this.tile1,
+    doublePlay: function() {
+      var tile1a = this.tile1
+    }
   }
 
   var getNewRandomTile = {
@@ -37,12 +44,16 @@ $(document).ready(function() {
     num: function(){return tiles.array[this.rand()]}
   }
 
-  var updateRoundText = {
-    zero: function() {
+  var updateText = {
+    roundZero: function() {
       domObj.roundNum.text("0")
     },
-    subseq: function(num){
+    rounds: function(num){
       domObj.roundNum.text(parseInt(num).toString())
+    },
+    butToggle: function(){
+      var strtBtn = domObj.startButton[0]
+      strtBtn.value=="Start" ? strtBtn.value="Restart" : strtBtn.value="Start"
     }
   }
 
@@ -51,15 +62,21 @@ $(document).ready(function() {
   }
 
   var playTile = {
-    change: function(tile, origColor, lightColor, soundNum){
+    change: function(tile, origColor, lightColor, soundName){
       $(tile).css("background-color", lightColor)
       this.darken(tile, origColor)
-      this.audio(soundNum)
+      this.audio(soundName)
     },
     darken: function(tile, origColor) {
       setTimeout(function(){$(tile).css("background-color", origColor)}, 400)
     },
-    audio: function(soundNum){sound[soundNum].play()}
+    audio: function (soundName){
+      sound[soundName].play()
+      setTimeout(function(){
+        sound[soundName].pause()
+        sound[soundName].currentTime = 0
+      },470)
+    }
   }
 
   var playTiles = {
@@ -109,9 +126,10 @@ $(document).ready(function() {
   var gameOver = {
     rst: function() {
       tileSequence.array = []
-      updateRoundText.zero()
+      updateText.roundZero()
       chgMouse.toggleType("auto")
       chgMouse.unplayable()
+      updateText.butToggle()
       console.log("Game Over!")
     }
   }
@@ -131,7 +149,7 @@ $(document).ready(function() {
           currTile = 0
           nextRound.go(num)
         } else if (usrArr[currTile] == tileSequence.array[currTile]) {
-          console.log(usrArr[currTile] + " " + tileSequence.array[currTile])
+          // console.log(usrArr[currTile] + " " + tileSequence.array[currTile])
           currTile++
         } else {
           console.log("Whoops!")
@@ -168,7 +186,7 @@ $(document).ready(function() {
       setTimeout(function(){
         num ++
         // console.log("-------- next round: " + num +" --------")
-        updateRoundText.subseq(num)
+        updateText.rounds(num)
         tileSequence.array.push(getNewRandomTile.num())
         playTiles.go(tileSequence.array)
         userSel.tile(num)
