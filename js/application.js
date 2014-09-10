@@ -30,14 +30,7 @@ $(document).ready(function() {
     tile1: new Audio('sounds/tile1.mp3'),
     tile2: new Audio('sounds/tile2.mp3'),
     tile3: new Audio('sounds/tile3.mp3'),
-    tile4: new Audio('sounds/tile4.mp3'),
-    tile1a: this.tile1,
-    tile2a: this.tile1,
-    tile3a: this.tile1,
-    tile4a: this.tile1,
-    doublePlay: function() {
-      var tile1a = this.tile1
-    }
+    tile4: new Audio('sounds/tile4.mp3')
   }
 
   var getNewRandomTile = {
@@ -144,7 +137,6 @@ $(document).ready(function() {
       var t3 = domObj.tile3
       var t4 = domObj.tile4
       chgMouse.toggleType("auto")
-
       function match() {
         if (usrArr[currTile][0] != tileSequence.array[currTile][0]){
           currTile = 0
