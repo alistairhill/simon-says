@@ -80,7 +80,7 @@ $(document).ready(function() {
       $(domObj.container).css("pointer-events", "none")
       function advanceTiles(){
         if (arr[currTile] == domObj.tile1) {
-          playTile.change(domObj.tile1, "#EEE685", "#FFF68F", "tile1")
+          playTile.change(domObj.tile1, "#E5E500", "#FFFF00", "tile1")
         } else if (arr[currTile] == domObj.tile2) {
           playTile.change(domObj.tile2, "#CD2626", "#FF3030", "tile2")
         } else if (arr[currTile] == domObj.tile3) {
@@ -123,7 +123,6 @@ $(document).ready(function() {
       updateText.roundZero()
       chgMouse.toggleType("auto")
       chgMouse.unplayable()
-      console.log("Game Over!")
     }
   }
 
@@ -148,7 +147,7 @@ $(document).ready(function() {
         }
       }
       $(t1).click(function(){
-        playTile.change(t1, "#EEE685", "#FFF68F", "tile1")
+        playTile.change(t1, "#E5E500", "#FFFF00", "tile1")
         usrArr.push(t1)
         match()
       })
