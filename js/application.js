@@ -88,16 +88,12 @@ $(document).ready(function() {
       $(domObj.container).css("pointer-events", "none")
       function advanceTiles(){
         if (arr[currTile] == domObj.tile1) {
-          // console.log("tile1 lighten")
           playTile.change(domObj.tile1, "#EEE685", "#FFF68F", "tile1")
         } else if (arr[currTile] == domObj.tile2) {
-          // console.log("tile2 lighten")
           playTile.change(domObj.tile2, "#CD2626", "#FF3030", "tile2")
         } else if (arr[currTile] == domObj.tile3) {
-          // console.log("tile3 lighten")
           playTile.change(domObj.tile3, "#9ACD32", "#B3EE3A", "tile3")
         } else if (arr[currTile] == domObj.tile4) {
-          // console.log("tile4 lighten")
           playTile.change(domObj.tile4, "#1874CD", "#1E90FF", "tile4")
         }
         currTile++
@@ -150,16 +146,14 @@ $(document).ready(function() {
       chgMouse.toggleType("auto")
 
       function match() {
-        if (currTile >= tileSequence.array.length-1) {
-          currTile = 0
-          nextRound.go(num)
-
-        } else if (usrArr[currTile] == tileSequence.array[currTile]) {
-          console.log(usrArr[currTile])
-          currTile++
-        } else if (usrArr[currTile][0] != tileSequence.array[currTile][0]) {
+        if (usrArr[currTile][0] != tileSequence.array[currTile][0]){
           currTile = 0
           gameOver.rst()
+        } else if (currTile >= tileSequence.array.length-1) {
+          currTile = 0
+          nextRound.go(num)
+        } else {
+          currTile++
         }
       }
       $(t1).click(function(){
