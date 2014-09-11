@@ -43,10 +43,6 @@ $(document).ready(function() {
     },
     rounds: function(num){
       domObj.roundNum.text(parseInt(num).toString())
-    },
-    butToggle: function(){
-      // var strtBtn = domObj.startButton[0]
-      // if (strtBtn.value="Start") {strtBtn.value=="Start"}
     }
   }
 

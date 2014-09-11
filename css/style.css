@@ -26,9 +26,9 @@
 
 .start-button {
   background-color: #5EBD5E;
-  padding-left: 2px;
+  padding: 2px;
   border-radius: 5px;
-  width: 3.2em;
+  width: 3.1em;
   color: #FFF;
 }
 .start-button:hover { background-color: #4EBD5E; }
