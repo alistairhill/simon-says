@@ -14,7 +14,7 @@ $(document).ready(function() {
   var domObj = {
     container: $(".container"),
     startButton: $(".start-button"),
-    roundNum: $(".display"),
+    roundNum: $(".round"),
     tileArray: [$(".tile1"), $(".tile2"), $(".tile3"), $(".tile4")]
   }
 

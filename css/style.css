@@ -7,89 +7,44 @@
   outline:0;
 }
 
-.title {
-  font-family: “Century Gothic”, CenturyGothic, AppleGothic, sans-serif;
-  font-size: 2.3em;
-  font-weight: bold;
-  text-align: center;
-  margin: 20px 0 40px 0;
-}
-
-.controls {
-  text-align: center;
-  font-size: 1.1em;
-}
-
-.controls .round {
-  padding-left: 10px;
-}
-
-.start-button {
-  background-color: #5EBD5E;
-  padding: 2px;
-  border-radius: 5px;
-  width: 3.1em;
-  color: #FFF;
-}
-.start-button:hover { background-color: #4EBD5E; }
-.start-button:active { background-color: #51A351; }
-
-.start {
-  padding: 0px;
-  position: absolute;
-  margin: 10px 0 0 6px;
-}
-
-.display {
-  text-align: right;
-  font-size: 1em;
-  border: 1px solid #444;
-  background-color: #AAA88A;
-  padding: 2px 4px 2px 4px;
-  border-radius: 5px;
-  width: 1.75em;
-  color: #111;
-  position: relative;
-  float: right;
-  bottom:35px;
-  right: 7px;
-  -moz-box-shadow:    inset 2px 2px 5px #000;
-  -webkit-box-shadow: inset 2px 2px 5px #000;
-  box-shadow:         inset 2px 2px 5px #000;
-}
-
-.container {
+.game-container {
   margin: 30px;
   margin-left: auto;
   margin-right: auto;
   width: 366px;
-  height: 366px;
+  height: 440px;
   border-radius: 20px;
   background-color: #000;
-  background: -webkit-linear-gradient(#333, #000);
-  background: -o-linear-gradient(#333, #000);
-  background: -moz-linear-gradient(#333, #000);
-  background: linear-gradient(#333, #000);
-  border: outset 7px #222;
+  background: -webkit-linear-gradient(#555, #111);
+  background: -o-linear-gradient(#555, #111);
+  background: -moz-linear-gradient(#555, #111);
+  background: linear-gradient(#555, #111);
+  border: outset 7px #333;
+}
+
+.title {
+  font-size: 1.4em;
+  text-align: center;
+  margin: 3px;
+  color: #BBB;
+}
+
+.tile-container {
+  margin-left: auto;
+  margin-right: auto;
+  border-spacing: 3px;
+  border-collapse: separate;
 }
 
 .tile1, .tile2, .tile3, .tile4 {
-  font-size: 1em;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin: 3px;
   width: 175px;
   height: 175px;
-  line-height: 175px;
-  float: left;
   border-radius: 5px;
-  color: #EFF;
   opacity: 0.9;
-  -moz-box-shadow:    inset 2px 2px 12px #000;
-  -webkit-box-shadow: inset 2px 2px 12px #000;
-  box-shadow:         inset 2px 2px 12px #000;
-
+  border: 1px solid #111;
+  -moz-box-shadow:    inset 6px 6px 20px #111;
+  -webkit-box-shadow: inset 6px 6px 20px #111;
+  box-shadow:         inset 6px 6px 20px #111;
 }
 
 .tile1:hover, .tile2:hover, .tile3:hover, .tile4:hover {
@@ -120,70 +75,126 @@
   background-color: #1874CD;
 }
 
+.controls {
+  margin: 2px;
+  padding: 2px;
+  text-align: center;
+  height: 30px;
+}
+
+.start-button {
+  float: left;
+  margin-left: 15px;
+  font-size: 1.1em;
+  background-color: #111;
+  border-radius: 5px;
+  border: 1px solid #333;
+  color: #BBB;
+  padding: 2px;
+  border-radius: 4px;
+  width: 5em;
+  height: 1.7em;
+  -moz-box-shadow:    inset 5px 3px 4px #444;
+  -webkit-box-shadow: inset 5px 3px 4px #444;
+  box-shadow:         inset 5px 3px 4px #444;
+}
+.start-button:active {
+  color: #AAA;
+  -moz-box-shadow:    inset 4px 3px 4px #333;
+  -webkit-box-shadow: inset 4px 3px 4px #333;
+  box-shadow:         inset 4px 3px 4px #333;
+}
+
+.display {
+  float: right;
+  margin-right: 15px;
+  text-align: right;
+  font-size: 1em;
+  border: 1px solid #444;
+  background-color: #AAA88A;
+  padding: 2px 4px 2px 2px;
+  border-radius: 5px;
+  width: 5em;
+  height: 1.4em;
+  color: #111;
+  -moz-box-shadow:    inset 2px 2px 5px #000;
+  -webkit-box-shadow: inset 2px 2px 5px #000;
+  box-shadow:         inset 2px 2px 5px #000;
+}
+.round {
+  font-size: 1.1em;
+}
+
 footer {
   text-align: center;
   font-size: 12px;
   margin: 30px;
 }
 
-.github-fork-ribbon {
-  position: absolute;
-  padding: 2px 0;
-  background-color: #a00;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.15)));
-  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
-  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
-  background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
-  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
-  -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
-  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
-  font: 700 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
-  z-index: 9999;
-  pointer-events: auto;
-}
+/*-------------------------------------------------------------
+Media Queries
+-------------------------------------------------------------*/
+@media screen and (min-width: 700px) {
+  .fork-text:after {content: "Fork me on GitHub";}
 
-.github-fork-ribbon a,
-.github-fork-ribbon a:hover {
-  color: #fff;
-  text-decoration: none;
-  text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
-  text-align: center;
-  width: 200px;
-  line-height: 20px;
-  display: inline-block;
-  padding: 2px 0;
-  border-width: 1px 0;
-  border-style: dotted;
-  border-color: #fff;
-  border-color: rgba(255, 255, 255, 0.7);
-}
+  .github-fork-ribbon {
+    position: absolute;
+    padding: 2px 0;
+    background-color: #a00;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.15)));
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+    -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+    font: 700 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    z-index: 9999;
+    pointer-events: auto;
+  }
 
-.github-fork-ribbon-wrapper {
-  width: 150px;
-  height: 150px;
-  position: absolute;
-  overflow: hidden;
-  top: 0;
-  z-index: 9999;
-  pointer-events: none;
-}
+  .github-fork-ribbon a,
+  .github-fork-ribbon a:hover {
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 200px;
+    line-height: 20px;
+    display: inline-block;
+    padding: 2px 0;
+    border-width: 1px 0;
+    border-style: dotted;
+    border-color: #fff;
+    border-color: rgba(255, 255, 255, 0.7);
+  }
 
-.github-fork-ribbon-wrapper.right-bottom {
-  position: fixed;
-  top: inherit;
-  bottom: 0;
-  right: 0;
-}
+  .github-fork-ribbon-wrapper {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    z-index: 9999;
+    pointer-events: none;
+  }
 
-.github-fork-ribbon-wrapper.right-bottom .github-fork-ribbon {
-  top: 80px;
-  right: -43px;
+  .github-fork-ribbon-wrapper.right-bottom {
+    position: fixed;
+    top: inherit;
+    bottom: 0;
+    right: 0;
+  }
 
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  transform: rotate(-45deg);
+  .github-fork-ribbon-wrapper.right-bottom .github-fork-ribbon {
+    top: 80px;
+    right: -43px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
 }
