@@ -15,14 +15,7 @@ $(document).ready(function() {
     container: $(".container"),
     startButton: $(".start-button"),
     roundNum: $(".display"),
-    tile1: $(".t-left"),
-    tile2: $(".t-right"),
-    tile3: $(".b-left"),
-    tile4: $(".b-right")
-  }
-
-  var tiles = {
-    array: [domObj.tile1, domObj.tile2, domObj.tile3, domObj.tile4]
+    tileArray: [$(".tile1"), $(".tile2"), $(".tile3"), $(".tile4")]
   }
 
   var sound = {
@@ -34,13 +27,10 @@ $(document).ready(function() {
 
   var getNewRandomTile = {
     rand: function(){return Math.floor(Math.random()*4)+0},
-    num: function(){return tiles.array[this.rand()]}
+    num: function(){return domObj.tileArray[this.rand()]}
   }
 
   var updateText = {
-    roundZero: function() {
-      domObj.roundNum.text("0")
-    },
     rounds: function(num){
       domObj.roundNum.text(parseInt(num).toString())
     }
@@ -68,21 +58,27 @@ $(document).ready(function() {
     }
   }
 
-  var playTiles = {
-    go: function(arr) {
+  var simonSays = {
+    doThis: function(arr) {
       var currTile = 0
+      t1 = domObj.tileArray[0],
+      t2 = domObj.tileArray[1],
+      t3 = domObj.tileArray[2],
+      t4 = domObj.tileArray[3]
       chgMouse.toggleType("auto")
       chgMouse.unplayable()
       $(domObj.container).css("pointer-events", "none")
+
       function advanceTiles(){
-        if (arr[currTile] == domObj.tile1) {
-          playTile.change(domObj.tile1, "#E5E500", "#FFFF00", "tile1")
-        } else if (arr[currTile] == domObj.tile2) {
-          playTile.change(domObj.tile2, "#CD2626", "#FF3030", "tile2")
-        } else if (arr[currTile] == domObj.tile3) {
-          playTile.change(domObj.tile3, "#9ACD32", "#B3EE3A", "tile3")
-        } else if (arr[currTile] == domObj.tile4) {
-          playTile.change(domObj.tile4, "#1874CD", "#1E90FF", "tile4")
+        switch(arr[currTile]){
+          case t1: playTile.change(t1, "#E5E500", "#FFFF00", "tile1")
+          break
+          case t2: playTile.change(t2, "#CD2626", "#FF3030", "tile2")
+          break
+          case t3: playTile.change(t3, "#9ACD32", "#B3EE3A", "tile3")
+          break
+          case t4: playTile.change(t4, "#1874CD", "#1E90FF", "tile4")
+          break
         }
         currTile++
         if (currTile >= arr.length) {
@@ -98,16 +94,16 @@ $(document).ready(function() {
 
   var chgMouse = {
     toggleType: function(type){
-      var arrLen = tiles.array.length-1
-      for (var i = 0; i <= arrLen; i++) {
-        $(tiles.array[i]).css("cursor", type)
+      var tileSet = domObj.tileArray
+      for (var i = 0, x = domObj.tileArray.length; i < x; i++) {
+        $(tileSet[i]).css("cursor", type)
       }
     },
     unplayable: function(){
-      domObj.tile1.unbind()
-      domObj.tile2.unbind()
-      domObj.tile3.unbind()
-      domObj.tile4.unbind()
+      var tileSet = domObj.tileArray
+      for (var i = 0, x = domObj.tileArray.length; i < x; i++ ) {
+        tileSet[i].unbind()
+      }
     }
   }
 
@@ -116,20 +112,20 @@ $(document).ready(function() {
       $(domObj.container).css("pointer-events", "none")
       $(domObj.startButton).css("pointer-events", "all")
       tileSequence.array = []
-      updateText.roundZero()
+      updateText.rounds(0)
       chgMouse.toggleType("auto")
       chgMouse.unplayable()
     }
   }
 
-  var userSel = {
+  var userSays = {
     tile: function(num){
-      var usrArr = []
-      var currTile = 0
-      var t1 = domObj.tile1
-      var t2 = domObj.tile2
-      var t3 = domObj.tile3
-      var t4 = domObj.tile4
+      var usrArr = [],
+          currTile = 0,
+          t1 = domObj.tileArray[0],
+          t2 = domObj.tileArray[1],
+          t3 = domObj.tileArray[2],
+          t4 = domObj.tileArray[3]
       chgMouse.toggleType("auto")
       function match() {
         if (usrArr[currTile][0] != tileSequence.array[currTile][0]){
@@ -171,8 +167,8 @@ $(document).ready(function() {
         num ++
         updateText.rounds(num)
         tileSequence.array.push(getNewRandomTile.num())
-        playTiles.go(tileSequence.array)
-        userSel.tile(num)
+        simonSays.doThis(tileSequence.array)
+        userSays.tile(num)
       }, 1000)
     }
   }

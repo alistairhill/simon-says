@@ -73,7 +73,7 @@
   border: outset 7px #222;
 }
 
-.t-left, .t-right, .b-left, .b-right {
+.tile1, .tile2, .tile3, .tile4 {
   font-size: 1em;
   text-align: center;
   margin-left: auto;
@@ -92,29 +92,29 @@
 
 }
 
-.t-left:hover, .t-right:hover, .b-left:hover, .b-right:hover {
+.tile1:hover, .tile2:hover, .tile3:hover, .tile4:hover {
   opacity: 1;
 }
 
-.t-left {
+.tile1 {
   /*yellow*/
   border-top-left-radius: 175px;
   background-color: #E5E500;
 }
 
-.t-right {
+.tile2 {
   /*red*/
   border-top-right-radius: 175px;
   background-color: #CD2626;
 }
 
-.b-left {
+.tile3 {
   /*green*/
   border-bottom-left-radius: 175px;
   background-color: #9ACD32;
 }
 
-.b-right {
+.tile4 {
   /*blue*/
   border-bottom-right-radius: 175px;
   background-color: #1874CD;
