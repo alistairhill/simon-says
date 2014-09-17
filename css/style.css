@@ -23,10 +23,10 @@
 }
 
 .title {
-  font-size: 1.4em;
+  font-size: 1.3em;
   text-align: center;
-  margin: 3px;
-  color: #BBB;
+  margin: 4px;
+  color: #EEE;
 }
 
 .tile-container {
@@ -89,7 +89,7 @@
   background-color: #111;
   border-radius: 5px;
   border: 1px solid #333;
-  color: #BBB;
+  color: #CCC;
   padding: 2px;
   border-radius: 4px;
   width: 5em;
@@ -108,13 +108,13 @@
 .display {
   float: right;
   margin-right: 15px;
-  text-align: right;
+  text-align: left;
   font-size: 1em;
   border: 1px solid #444;
   background-color: #AAA88A;
-  padding: 2px 4px 2px 2px;
+  padding: 2px 0px 2px 8px;
   border-radius: 5px;
-  width: 5em;
+  width: 5.5em;
   height: 1.4em;
   color: #111;
   -moz-box-shadow:    inset 2px 2px 5px #000;
