@@ -16,23 +16,51 @@ function View(){
 }
 
 View.prototype = {
+  getAudio: function(){
+    this.tile1 = new Audio("sounds/tile1.mp3")
+    this.tile2 = new Audio("sounds/tile2.mp3")
+    this.tile3 = new Audio("sounds/tile3.mp3")
+    this.tile4 = new Audio("sounds/tile4.mp3")
+  },
   getStartButton: function(){
-    console.log("getST")
     return document.querySelector(this.startButton)
+  },
+  getTiles: function(){
+    console.log("getting tiles")
+    return document.querySelectorAll(this.tile1, this.tile2, this.tile3, this.tile4)
+  },
+  getRound: function(){
+    return document.querySelector(this.round)
   }
 }
 
 function Controller(view, game) {
   this.view = view
   this.game = game
-  console.log("in controller")
 }
 
 Controller.prototype = {
   bindListeners: function(){
-    var button = this.view.getStartButton()
-    button.addEventListener('click', function(){console.log("test")})
+    var strBut = this.view.getStartButton()
+    strBut.addEventListener('click', this.playTile.bind(this))
+  },
+  playTile: function(){
+    var play = this.game.playTiles(this.view.tile4)
+
   }
 }
 
-function Game(){}
+function Game(){
+  this.simonsTiles = []
+  this.playerTiles = []
+}
+
+Game.prototype = {
+  randTile: function(){
+    return this.randNum = (Math.floor(Math.random()*4)+1)
+  },
+  playTiles: function(tile){
+     document.querySelector(tile).style.backgroundColor += "#444"
+
+  }
+}
