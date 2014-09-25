@@ -1,7 +1,7 @@
 window.onload = function() {
-  var view = new View()
-  var game = new Game()
-  var controller = new Controller(view, game)
+  var view = new View(),
+  game = new Game(),
+  controller = new Controller(view, game)
   controller.bindListeners()
 }
 
@@ -24,8 +24,7 @@ View.prototype = {
     return document.querySelector(this.startButton)
   },
   getTiles: function(){
-    console.log("getting tiles")
-    return document.querySelectorAll(this.tile1, this.tile2, this.tile3, this.tile4)
+    return document.querySelectorAll(this.tileContainer)
   },
   getRound: function(){
     return document.querySelector(this.round)
@@ -39,11 +38,20 @@ function Controller(view, game) {
 
 Controller.prototype = {
   bindListeners: function(){
-    var strBut = this.view.getStartButton()
+    var strBut = this.view.getStartButton(),
+    tile1 = this.view.getTiles()[0],
+    tile2 = this.view.getTiles()[1],
+    tile3 = this.view.getTiles()[2],
+    tile4 = this.view.getTiles()[3]
+    console.log(this.view.getTiles())
     strBut.addEventListener('click', this.playTile.bind(this))
+
+    tile1.addEventListener('click', this.playTile.bind(this))
+    tile2.addEventListener('click', this.playTile.bind(this))
+    tile3.addEventListener('click', this.playTile.bind(this))
+    tile4.addEventListener('click', this.playTile.bind(this))
   },
   playTile: function(){
-    console.log(this.game.randTile())
     var rand = this.game.randTile()
     this.game.playTiles(this.view["tile"+rand], this.view["tile"+rand+"Snd"])
   }
@@ -60,7 +68,6 @@ Game.prototype = {
   },
   playTiles: function(tile, snd){
     document.querySelector(tile).style.opacity = "1"
-    tile
     snd.play()
     this.timer(
       function(){
@@ -72,5 +79,8 @@ Game.prototype = {
   },
   timer: function(func, amount){
     var timeFunc = setTimeout(func, amount)
+  },
+  compareTiles: function(){
+    console.log(this.simonsTiles == this.playerTiles)
   }
 }
