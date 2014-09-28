@@ -24,7 +24,7 @@ View.prototype = {
     return document.querySelector(this.startButton)
   },
   getTiles: function(){
-    return document.querySelectorAll(this.tileContainer)
+    return document.querySelector(this.tileContainer)
   },
   getRound: function(){
     return document.querySelector(this.round)
@@ -39,21 +39,25 @@ function Controller(view, game) {
 Controller.prototype = {
   bindListeners: function(){
     var strBut = this.view.getStartButton(),
-    tile1 = this.view.getTiles()[0],
-    tile2 = this.view.getTiles()[1],
-    tile3 = this.view.getTiles()[2],
-    tile4 = this.view.getTiles()[3]
-    console.log(this.view.getTiles())
-    strBut.addEventListener('click', this.playTile.bind(this))
-
-    tile1.addEventListener('click', this.playTile.bind(this))
-    tile2.addEventListener('click', this.playTile.bind(this))
-    tile3.addEventListener('click', this.playTile.bind(this))
-    tile4.addEventListener('click', this.playTile.bind(this))
+    tile1 = document.querySelector(this.view.tile1),
+    tile2 = document.querySelector(this.view.tile2),
+    tile3 = document.querySelector(this.view.tile3),
+    tile4 = document.querySelector(this.view.tile4)
+    strBut.addEventListener('click', this.simonTile.bind(this))
+    tile1.addEventListener('click', this.playerTile.bind(this))
+    tile2.addEventListener('click', this.playerTile.bind(this))
+    tile3.addEventListener('click', this.playerTile.bind(this))
+    tile4.addEventListener('click', this.playerTile.bind(this))
   },
-  playTile: function(){
+  simonTile: function(){
     var rand = this.game.randTile()
-    this.game.playTiles(this.view["tile"+rand], this.view["tile"+rand+"Snd"])
+    this.game.simonsTiles.push(this.view.getTiles().children[rand])
+    console.log(this.game.simonsTiles)
+  },
+  playerTile: function(tile){
+    this.game.playTiles(tile.target, this.view[tile.target.className+"Snd"])
+    this.game.playerTiles.push(tile.target)
+    console.log(this.game.playerTiles)
   }
 }
 
@@ -64,14 +68,14 @@ function Game(){
 
 Game.prototype = {
   randTile: function(){
-    return this.randNum = (Math.floor(Math.random()*4)+1)
+    return this.randNum = (Math.floor(Math.random()*4))
   },
   playTiles: function(tile, snd){
-    document.querySelector(tile).style.opacity = "1"
+    tile.style.opacity = "1"
     snd.play()
     this.timer(
       function(){
-        document.querySelector(tile).style.opacity = ".8"
+        tile.style.opacity = ".8"
         snd.pause()
         snd.currentTime = 0
       },470

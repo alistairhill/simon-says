@@ -100,17 +100,17 @@
   background: -webkit-linear-gradient(#555, #111);
   background: -o-linear-gradient(#555, #111);
   background: -moz-linear-gradient(#555, #111);
-  background: linear-gradient(#555, #111);
+  background: linear-gradient(#333, #111);
   -moz-box-shadow:    inset 5px 3px 4px #444;
   -webkit-box-shadow: inset 5px 3px 4px #444;
-  box-shadow:         inset 5px 3px 4px #444;
+  box-shadow:         inset 5px 3px 4px #333;
 }
 .start-button:active {
-  color: #AAA;
+  color: #999;
   border: 1px solid #222;
-  -moz-box-shadow:    inset 4px 3px 4px #333;
-  -webkit-box-shadow: inset 4px 3px 4px #333;
-  box-shadow:         inset 4px 3px 4px #333;
+  -moz-box-shadow:    inset 4px 3px 4px #222;
+  -webkit-box-shadow: inset 4px 3px 4px #222;
+  box-shadow:         inset 4px 3px 4px #222;
 }
 
 .display {
