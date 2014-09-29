@@ -30,7 +30,7 @@
 }
 
 .tile-container {
-  margin-left: auto;
+  margin-left: 5px;
   margin-right: auto;
   border-spacing: 3px;
   border-collapse: separate;
@@ -79,9 +79,11 @@
 }
 
 .controls {
-  margin: 2px;
+  float: left;
+  margin-top: 7px;
   padding: 2px;
   text-align: center;
+  width: 100%;
   height: 30px;
 }
 
@@ -94,15 +96,15 @@
   border: 1px solid #333;
   color: #CCC;
   padding: 2px;
-  border-radius: 4px;
+  border-radius: 2px;
   width: 6em;
   height: 1.7em;
-  background: -webkit-linear-gradient(#555, #111);
-  background: -o-linear-gradient(#555, #111);
-  background: -moz-linear-gradient(#555, #111);
-  background: linear-gradient(#333, #111);
-  -moz-box-shadow:    inset 5px 3px 4px #444;
-  -webkit-box-shadow: inset 5px 3px 4px #444;
+  background: -webkit-linear-gradient(#222, #111);
+  background: -o-linear-gradient(#222, #111);
+  background: -moz-linear-gradient(#222, #111);
+  background: linear-gradient(#222, #111);
+  -moz-box-shadow:    inset 5px 3px 4px #333;
+  -webkit-box-shadow: inset 5px 3px 4px #333;
   box-shadow:         inset 5px 3px 4px #333;
 }
 .start-button:active {
@@ -115,7 +117,7 @@
 
 .display {
   float: right;
-  margin-right: 15px;
+  margin-right: 20px;
   text-align: left;
   font-size: 1em;
   border: 1px solid #444;

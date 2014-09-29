@@ -43,21 +43,40 @@ Controller.prototype = {
     tile2 = document.querySelector(this.view.tile2),
     tile3 = document.querySelector(this.view.tile3),
     tile4 = document.querySelector(this.view.tile4)
-    strBut.addEventListener('click', this.simonTile.bind(this))
     tile1.addEventListener('click', this.playerTile.bind(this))
     tile2.addEventListener('click', this.playerTile.bind(this))
     tile3.addEventListener('click', this.playerTile.bind(this))
     tile4.addEventListener('click', this.playerTile.bind(this))
+    strBut.addEventListener('click', function(){this.nextRound(0)}.bind(this))
   },
-  simonTile: function(){
-    var rand = this.game.randTile()
-    this.game.simonsTiles.push(this.view.getTiles().children[rand])
-    console.log(this.game.simonsTiles)
+  simonSays: function(){
+    var currTile = 0,
+    siArray = this.game.simonsTiles,
+    that = this
+    function advanceTiles(){
+      that.game.playTiles(siArray[currTile], that.view[siArray[currTile].className+"Snd"])
+      currTile++
+      if (currTile >= siArray.length){
+        clearInterval(anInterval)
+        currTile = 0
+      }
+    }
+    var anInterval = setInterval(advanceTiles, 500)
+  },
+  nextRound: function(roundNum){
+    ++roundNum
+    var rand = this.game.randTile(),
+    randTile = this.view.getTiles().children[rand]
+    this.game.simonsTiles.push(randTile)
+    this.simonSays()
+    // console.log(this.game.simonsTiles)
+    //play each tiles in simonTile array with interval between
+
   },
   playerTile: function(tile){
     this.game.playTiles(tile.target, this.view[tile.target.className+"Snd"])
     this.game.playerTiles.push(tile.target)
-    console.log(this.game.playerTiles)
+    this.game.compareTiles()
   }
 }
 
@@ -85,6 +104,6 @@ Game.prototype = {
     var timeFunc = setTimeout(func, amount)
   },
   compareTiles: function(){
-    console.log(this.simonsTiles == this.playerTiles)
+    // console.log(this.simonsTiles[this.simonsTiles.length-1] == this.playerTiles[this.playerTiles.length-1])
   }
 }
