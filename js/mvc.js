@@ -24,7 +24,7 @@ View.prototype = {
     return document.querySelector(this.startButton)
   },
   getTiles: function(){
-    return document.querySelector(this.tileContainer)
+    return document.querySelectorAll(this.tileContainer)
   },
   getRound: function(){
     return document.querySelector(this.round)
@@ -38,18 +38,25 @@ function Controller(view, game) {
 
 Controller.prototype = {
   bindListeners: function(){
-    var strBut = this.view.getStartButton(),
-    tile1 = document.querySelector(this.view.tile1),
-    tile2 = document.querySelector(this.view.tile2),
-    tile3 = document.querySelector(this.view.tile3),
-    tile4 = document.querySelector(this.view.tile4)
-    tile1.addEventListener('click', this.playerTile.bind(this))
-    tile2.addEventListener('click', this.playerTile.bind(this))
-    tile3.addEventListener('click', this.playerTile.bind(this))
-    tile4.addEventListener('click', this.playerTile.bind(this))
-    strBut.addEventListener('click', function(){this.nextRound(0)}.bind(this))
+    var strBut = this.view.getStartButton()
+    this.userSays = this.playerTile.bind(this)
+    this.tileListeners("addEventListener")
+    strBut.addEventListener('click', function(){this.nextRound(); this.game.over(); this.resetRoundNum()}.bind(this))
+  },
+  tileListeners: function(listenerType) {
+    for (var i = 0; i<this.view.getTiles()[0].children.length ; i++){
+      this.view.getTiles()[0].children[i][listenerType]('click', this.userSays)
+    }
+  },
+  resetRoundNum: function(){
+    this.view.getRound().innerHTML=0
+  },
+  changeMouse: function(pointer){
+    this.tileListeners("addEventListener")
+    this.view.getTiles()[0].style.cursor = pointer
   },
   simonSays: function(){
+    this.changeMouse("default")
     var currTile = 0,
     siArray = this.game.simonsTiles,
     that = this
@@ -57,26 +64,45 @@ Controller.prototype = {
       that.game.playTiles(siArray[currTile], that.view[siArray[currTile].className+"Snd"])
       currTile++
       if (currTile >= siArray.length){
-        clearInterval(anInterval)
+        that.changeMouse("pointer")
+        clearInterval(timeBetweenSimonTiles)
         currTile = 0
       }
     }
-    var anInterval = setInterval(advanceTiles, 500)
+    var timeBetweenSimonTiles = setInterval(advanceTiles, 500)
   },
-  nextRound: function(roundNum){
-    ++roundNum
-    var rand = this.game.randTile(),
-    randTile = this.view.getTiles().children[rand]
-    this.game.simonsTiles.push(randTile)
-    this.simonSays()
-    // console.log(this.game.simonsTiles)
-    //play each tiles in simonTile array with interval between
-
+  nextRound: function(){
+    this.game.playerTiles = []
+    var that = this,
+    roundNum = this.game.simonsTiles.length+1
+    setTimeout(function(){
+      that.view.getTiles()[0].style.pointerEvents = "all"
+      that.view.getRound().innerHTML=parseInt(roundNum).toString()
+      var rand = that.game.randTile(),
+      randTile = that.view.getTiles()[0].children[rand]
+      that.game.simonsTiles.push(randTile)
+      that.simonSays()
+      that.tileListeners("removeEventListener")
+    }, 500)
   },
   playerTile: function(tile){
+    var that = this
     this.game.playTiles(tile.target, this.view[tile.target.className+"Snd"])
     this.game.playerTiles.push(tile.target)
-    this.game.compareTiles()
+    compareTiles()
+    function compareTiles(){
+      for(var i = 0, x = that.game.playerTiles.length; i<x; i++){
+        if (that.game.playerTiles[i] != that.game.simonsTiles[i]){
+          that.resetRoundNum()
+          that.game.over()
+          that.changeMouse("default")
+          that.tileListeners("removeEventListener")
+        } else if (i >= that.game.simonsTiles.length-1) {
+          currTile = 0
+          that.nextRound()
+        }
+      }
+    }
   }
 }
 
@@ -103,7 +129,9 @@ Game.prototype = {
   timer: function(func, amount){
     var timeFunc = setTimeout(func, amount)
   },
-  compareTiles: function(){
-    // console.log(this.simonsTiles[this.simonsTiles.length-1] == this.playerTiles[this.playerTiles.length-1])
+  over: function(){
+    console.log("Game Over!")
+    this.simonsTiles = []
+    this.playerTiles = []
   }
 }
