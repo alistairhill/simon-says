@@ -2,7 +2,7 @@ window.onload = function() {
   var view = new View(),
   game = new Game(),
   controller = new Controller(view, game)
-  controller.bindListeners()
+  controller.initializeStart()
 }
 
 function View(){
@@ -37,14 +37,13 @@ function Controller(view, game) {
 }
 
 Controller.prototype = {
-  bindListeners: function(){
+  initializeStart: function(){
     var strBut = this.view.getStartButton()
-    this.userSays = this.playerTile.bind(this)
-    this.tileListeners("addEventListener")
     strBut.addEventListener('click', function(){this.nextRound(); this.game.over(); this.resetRoundNum()}.bind(this))
+    this.userSays = this.playerTile.bind(this)
   },
   tileListeners: function(listenerType) {
-    for (var i = 0; i<this.view.getTiles()[0].children.length ; i++){
+    for (var i = 0, x = this.view.getTiles()[0].children.length; i<x ; i++){
       this.view.getTiles()[0].children[i][listenerType]('click', this.userSays)
     }
   },
@@ -91,7 +90,7 @@ Controller.prototype = {
     this.game.playerTiles.push(tile.target)
     compareTiles()
     function compareTiles(){
-      for(var i = 0, x = that.game.playerTiles.length; i<x; i++){
+      for (var i = 0, x = that.game.playerTiles.length; i<x; i++){
         if (that.game.playerTiles[i] != that.game.simonsTiles[i]){
           that.resetRoundNum()
           that.game.over()
@@ -130,7 +129,6 @@ Game.prototype = {
     var timeFunc = setTimeout(func, amount)
   },
   over: function(){
-    console.log("Game Over!")
     this.simonsTiles = []
     this.playerTiles = []
   }
